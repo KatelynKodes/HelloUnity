@@ -2,29 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoalBehavior : MonoBehaviour
+public class GoalBehavior : HealthBehavior
 {
     public Material FailureMaterial;
 
-    [SerializeField]
-    private float _health = 10;
-    private int _enemyCount = 0;
-
-    public int EnemyCount
+    public override void OnDeath()
     {
-        get { return _enemyCount; }
-        set { _enemyCount = value; }
-    }
-
-    public void Update()
-    {
-        if (EnemyCount >= _health)
+        MeshRenderer renderer = GetComponent<MeshRenderer>();
+        if (renderer)
         {
-            MeshRenderer renderer = GetComponent<MeshRenderer>();
-            if (renderer)
-            {
-                renderer.material = FailureMaterial;
-            }
+            renderer.material = FailureMaterial;
         }
+
+        base.OnDeath();
     }
 }
