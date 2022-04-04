@@ -13,7 +13,7 @@ public class GoalHealthTextBehavior : MonoBehaviour
 
     private void Update()
     {
-        float health = (_goal.Health - _goal.EnemyCount);
+        float health = (_goal.Health);
 
         if (health < 0)
         {
